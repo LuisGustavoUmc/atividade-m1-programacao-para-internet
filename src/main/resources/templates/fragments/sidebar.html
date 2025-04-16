@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Fragmento "sidebar" -->
+<div th:fragment="sidebar">
+
+    <!-- Container principal da sidebar -->
+    <div id="sidebar">
+
+        <!-- Título da sidebar -->
+        <h4 class="text-center py-3">FindPark Menu</h4>
+
+        <!-- Lista de navegação em coluna -->
+        <ul class="nav flex-column">
+
+            <!-- Item: Link para a página inicial -->
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}" aria-current="page">
+                    <!-- Ícone de casa + texto visível apenas em telas médias ou maiores -->
+                    <i class="bi bi-house-door"></i>
+                    <span class="d-none d-md-inline">Início</span>
+                </a>
+            </li>
+
+            <!-- Item: Link para a página de Vagas -->
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/vagas}">
+                    <!-- Ícone de headset + texto visível apenas em telas médias ou maiores -->
+                    <i class="bi bi-headset"></i>
+                    <span class="d-none d-md-inline">Vagas</span>
+                </a>
+            </li>
+
+            <!-- Item: Botão de logout usando formulário POST -->
+            <li class="nav-item">
+                <form th:action="@{/logout}" method="post" style="margin: 0;">
+                    <button type="submit" class="nav-link logout-button">
+                        <!-- Ícone de logout -->
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span class="d-none d-md-inline">Sair</span>
+                    </button>
+                </form>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

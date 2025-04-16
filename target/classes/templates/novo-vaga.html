@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Vaga</title>
+
+    <!-- Importa o Bootstrap para estilização -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Importa os ícones do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Importa o CSS customizado do projeto -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<!-- Sidebar importada como fragmento -->
+<aside>
+    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+</aside>
+
+<!-- Botão de menu que aparece somente em telas pequenas -->
+<div class="toggle-btn btn btn-dark d-md-none">
+    <span>&#9776;</span>
+</div>
+
+<!-- Container principal da página -->
+<div class="container mt-4" th:fragment="content">
+
+    <!-- Título da página -->
+    <h1 class="mb-4">Cadastrar Nova Vaga</h1>
+
+    <!-- Formulário de cadastro, vinculado ao objeto "vaga" que vem do Controller -->
+    <form th:action="@{/vagas/salvar}" th:object="${vaga}" method="post" class="row g-3">
+
+        <!-- Campo para o setor da vaga -->
+        <div class="col-md-6">
+            <label for="setor" class="form-label">Setor</label>
+            <input type="text" th:field="*{setor}" class="form-control" id="setor" placeholder="Ex: A1" required>
+        </div>
+
+        <!-- Seleção do dia da semana em que a vaga estará disponível -->
+        <div class="col-md-6">
+            <label for="diaSemana" class="form-label">Dia da Semana</label>
+            <select th:field="*{diaSemana}" class="form-select" id="diaSemana" required>
+                <option value="" disabled selected>Selecione o dia</option>
+                <option value="Segunda-feira">Segunda-feira</option>
+                <option value="Terça-feira">Terça-feira</option>
+                <option value="Quarta-feira">Quarta-feira</option>
+                <option value="Quinta-feira">Quinta-feira</option>
+                <option value="Sexta-feira">Sexta-feira</option>
+                <option value="Sábado">Sábado</option>
+                <option value="Domingo">Domingo</option>
+            </select>
+        </div>
+
+        <!-- Campo para o horário de início da vaga -->
+        <div class="col-md-6">
+            <label for="horarioInicio" class="form-label">Horário de Início</label>
+            <input type="time" th:field="*{horarioInicio}" class="form-control" id="horarioInicio" required>
+        </div>
+
+        <!-- Campo para o horário de fim da vaga -->
+        <div class="col-md-6">
+            <label for="horarioFim" class="form-label">Horário de Fim</label>
+            <input type="time" th:field="*{horarioFim}" class="form-control" id="horarioFim" required>
+        </div>
+
+        <!-- Botões de ação -->
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a th:href="@{/vagas}" class="btn btn-secondary ms-2">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+<!-- Script JS  -->
+<script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>

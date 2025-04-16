@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Vaga</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Editar Vaga</h2>
+    <form th:action="@{'/vagas/atualizar/' + ${vaga.id}}" th:object="${vaga}" method="post">
+
+        <!-- ID - apenas leitura -->
+        <!-- Mostra o ID, mas sem permitir edição -->
+        <div class="mb-3">
+            <label for="id" class="form-label">ID</label>
+            <input type="text" th:value="${vaga.id}" id="id" class="form-control" disabled />
+            <input type="hidden" name="id" th:value="${vaga.id}"> <!-- Campo oculto para envio do ID -->
+        </div>
+
+        <!-- Setor -->
+        <div class="mb-3">
+            <label for="setor" class="form-label">Setor</label>
+            <input type="text" th:field="*{setor}" id="setor" class="form-control" required />
+        </div>
+
+        <!-- Dia da Semana -->
+        <div class="mb-3">
+            <label for="diaSemana" class="form-label">Dia da Semana</label>
+            <select th:field="*{diaSemana}" id="diaSemana" class="form-select" required>
+                <option value="Segunda-feira">Segunda-feira</option>
+                <option value="Terça-feira">Terça-feira</option>
+                <option value="Quarta-feira">Quarta-feira</option>
+                <option value="Quinta-feira">Quinta-feira</option>
+                <option value="Sexta-feira">Sexta-feira</option>
+                <option value="Sábado">Sábado</option>
+                <option value="Domingo">Domingo</option>
+            </select>
+        </div>
+
+        <!-- Horário Início -->
+        <div class="mb-3">
+            <label for="horarioInicio" class="form-label">Horário de Início</label>
+            <input type="time" th:field="*{horarioInicio}" id="horarioInicio" class="form-control" required />
+        </div>
+
+        <!-- Horário Fim -->
+        <div class="mb-3">
+            <label for="horarioFim" class="form-label">Horário de Fim</label>
+            <input type="time" th:field="*{horarioFim}" id="horarioFim" class="form-control" required />
+        </div>
+
+        <!-- Botão para salvar alterações  -->
+        <button type="submit" class="btn btn-success">Salvar Alterações</button>
+
+        <!-- Botão para cancelar alterações  -->
+        <a th:href="@{/vagas}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>
